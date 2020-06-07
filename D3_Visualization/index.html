@@ -117,26 +117,27 @@
     }
 
     .crosstabchart {
-      float:right;
-      height: 410px;
+      float:left;
+      clear:right;
+      height: unset;
       width: 100%;
       padding: 5px;
     }
 
     .linechart {
-      float:right;
+      float:left;
       clear:right;
-      height: 400px;
+      height: unset;
       width: 100%;
       padding: 5px;      
     }
 
     .radialchart {
-      float:right;
+      float:left;
       clear:right;
       height: 500px;
       width: 100%;
-      padding: 30px;      
+      padding: 5px;      
     }
 
 
@@ -175,7 +176,7 @@
     left: 10px;
     border-radius: 3px;
     width: 120px;
-    border: 1px solid rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 0, 0, 0.0);
     font-family: 'Open Sans', sans-serif;
     }
     
@@ -187,7 +188,6 @@
     padding: 0;
     padding: 10px;
     text-decoration: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
     text-align: center;
     }
     
@@ -229,14 +229,16 @@
   <div class="map-overlay top">
     <div class="map-overlay-inner">
       <h2>Chicago Crimes in 2020</h2>
+      <!--
       <div id="legend" class="legend">
         <div class="bar"></div>
         <div>Density</div>
-      </div>
+      </div>-->
       <!-- Rectangular switch -->
       <div style='display: inline-block;'>
           AutoPlay 
           <input type='checkbox' style='display: inline-block;' onclick="AutoFunc()" checked>
+          <label> </label>
       </div>
       <p>
         <label for="amount">Date range:</label>
@@ -278,6 +280,7 @@
       //Load from mapbox.js
       runMapbox(map, data);
 
+      
       //Remove Loading screen and add div boxes for charts
       d3.select("#loading").remove()
       d3.select('body')
@@ -285,11 +288,12 @@
         .attr('class', 'chartpanel')
         .style('display', 'none')
         .attr('id', 'chartpanelid')
-      
+
       d3.select('div.chartpanel')
         .append('div')
         .attr('class', 'crosstabchart')
         .attr('id', 'ctcdivid')
+
 
       d3.select('div.chartpanel')
         .append('br')
@@ -299,10 +303,12 @@
         .attr('class', 'linechart')
         .attr('id', 'lcdivid')
 
+
       d3.select('div.chartpanel')
         .append('div')
         .attr('class', 'radialchart')
         .attr('id', 'rcdivid')
+
 
       //load from bound.js
       runD3(data);
